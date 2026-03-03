@@ -19,7 +19,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
-#    entrypoint: ["entrypoint.dev.sh"]
+    entrypoint: ["entrypoint.dev.sh"]
     command: ./bin/rails server -b 0.0.0.0
     volumes:
       - .:/rails
@@ -32,44 +32,44 @@ services:
       DATABASE_URL: postgres://postgres:password@db:5432/rvcc_development
       RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
       RAILS_LOG_TO_STDOUT: "true"
-#      VITE_RUBY_HOST: vite
+      VITE_RUBY_HOST: vite
     depends_on:
       db:
         condition: service_healthy
-#      vite:
-#        condition: service_started
+      vite:
+        condition: service_started
     stdin_open: true
     tty: true
 
-#  vite:
-#    build:
-#      context: .
-#      dockerfile: Dockerfile.dev
-#    entrypoint: ["entrypoint.vite.sh"]
-#    command: ./bin/vite dev
-#    volumes:
-#      - .:/rails
-#      - bundle_cache:${rvm_path}/gems/ruby-4.0.1
-#      - node_modules:/rails/node_modules
-#    ports:
-#      - "3036:3036"
-#    environment:
-#      RAILS_ENV: development
-#      NODE_ENV: development
-#    stdin_open: true
-#    tty: true
-#    healthcheck:
-#      test: ["CMD", "curl", "-f", "http://localhost:3036/vite-dev/"]
-#      interval: 30s
-#      timeout: 10s
-#      retries: 3
-#      start_period: 40s
+  vite:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    entrypoint: ["entrypoint.vite.sh"]
+    command: ./bin/vite dev
+    volumes:
+      - .:/rails
+      - bundle_cache:${rvm_path}/gems/ruby-4.0.1
+      - node_modules:/rails/node_modules
+    ports:
+      - "3036:3036"
+    environment:
+      RAILS_ENV: development
+      NODE_ENV: development
+    stdin_open: true
+    tty: true
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3036/vite-dev/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
   test:
     build:
       context: .
       dockerfile: Dockerfile.dev
-#    entrypoint: ["entrypoint.dev.sh"]
+    entrypoint: ["entrypoint.dev.sh"]
     command: tail -f /dev/null
     volumes:
       - .:/rails
@@ -81,12 +81,12 @@ services:
       RAILS_ENV: test
       DATABASE_URL: postgres://postgres:password@db:5432/rvcc_test
       RAILS_LOG_TO_STDOUT: "true"
-#      VITE_RUBY_HOST: vite
+      VITE_RUBY_HOST: vite
     depends_on:
       db:
         condition: service_healthy
-#      vite:
-#        condition: service_started
+      vite:
+        condition: service_started
     stdin_open: true
     tty: true
 

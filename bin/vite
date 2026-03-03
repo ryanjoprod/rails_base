@@ -1,0 +1,10 @@
+!#/bin/bash
+set -e
+
+# Load the Rails environment
+if [ -f "./config/environment" ]; then
+    . ./config/environment
+fi
+
+# Execute Vite with the provided arguments
+exec ./bin/vite "$@"

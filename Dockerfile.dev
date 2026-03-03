@@ -38,14 +38,14 @@ COPY . .
 
 # Add entrypoint scripts
 COPY entrypoint.dev.sh /usr/bin/
-# COPY entrypoint.vite.sh /usr/bin/
-# RUN chmod +x /usr/bin/entrypoint.dev.sh /usr/bin/entrypoint.vite.sh
-RUN chmod +x /usr/bin/entrypoint.dev.sh
-ENTRYPOINT [ "entrypoint.dev.sh" ]
+COPY entrypoint.vite.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.dev.sh /usr/bin/entrypoint.vite.sh
+# ENTRYPOINT [ "entrypoint.dev.sh" ]
+# ENTRYPOINT [ "entrypoint.vite.sh" ]
 
 # Configure the main process to run when running the image
 # EXPOSE 3000 3036 3001 9222
-EXPOSE 3000
+EXPOSE 3000 3036
 
 # Start the main process
 CMD ["rails", "server", "-b", "0.0.0.0"] 

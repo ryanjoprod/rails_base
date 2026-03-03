@@ -29,4 +29,4 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 })
 
-export default ComponentRenderer
+export default ComponentRenderer;

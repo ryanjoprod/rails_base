@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= content_for(:title) || "Rails Base" %></title>
+<html lang="en">
+<head>
+    <title>Recipes | Base</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Rails Base">
+    <meta name="application-name" content="Recipes Base">
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -18,14 +18,18 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= vite_javascript_tag 'entrypoints/application.jsx' %>
-    <%= vite_stylesheet_tag 'entrypoints/application.css' %>
-  </head>
+    <%= vite_client_tag %>
+    <%= vite_react_refresh_tag %>
 
-  <body class="h-full">
-    <div class="h-full bg-slate-800/90 backdrop-blur-xl border border-slate-700/50 p-8 shadow-2xl">
-      <%= yield %>
+    <%= vite_javascript_tag 'entrypoints/Recipes/index.jsx' %>
+    <%= vite_stylesheet_tag 'entrypoints/Recipes/styles.css' %>
+</head>
+
+<body>
+    <div class="recipes-wrapper">
+        <div class="content">
+            <%= yield %>
+        </div>
     </div>
-  </body>
+</body>
 </html>
